@@ -21,7 +21,7 @@ app.jinja_env.filters["usd"] = usd
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+app.config['SECRET_KEY'] = 'GDFhjLKM'
 
 # Configure CS50 Library to use SQLite database
 db = SQL(os.getenv("postgres://nqdbkhbxjynhes:3bfef8c40ef055f6966c23b8edce2babb2a910f3b4444c4ffc2cabf659a86c3b@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/d5qqg0h9aa2g26"))
