@@ -1,4 +1,5 @@
 import os
+import psycopg2
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
@@ -24,8 +25,11 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL(os.getenv("postgres://nqdbkhbxjynhes:3bfef8c40ef055f6966c23b8edce2babb2a910f3b4444c4ffc2cabf659a86c3b@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/d5qqg0h9aa2g26"))
+# db = SQL("sqlite:///shelf.db")
 
+DATABASE_URL = os.environ['postgres://nqdbkhbxjynhes:3bfef8c40ef055f6966c23b8edce2babb2a910f3b4444c4ffc2cabf659a86c3b@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/d5qqg0h9aa2g26']
+
+db = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 @app.route("/")
 def index():
