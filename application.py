@@ -24,7 +24,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db=SQL("sqlite:///shelf.db")
+db = SQL(os.getenv("ec2-54-228-250-82.eu-west-1.compute.amazonaws.com"))
+
 
 @app.route("/")
 def index():
